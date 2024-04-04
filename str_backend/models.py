@@ -4,7 +4,7 @@ class Category(models.Model):
     category_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=250)
     img_url = models.CharField(max_length=250, null=True)
-    total_posts = models.IntegerField(default=0, null=False)
+    total_posts = models.PositiveIntegerField(default=0, null=False)
 
     def __str__(self):
         return self.name
@@ -20,17 +20,10 @@ class Post(models.Model):
     slug = models.CharField(max_length=50, null=False)
     tags = models.CharField(max_length=200, null=True)
     published_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.title
-
-class PostViews(models.Model):
-    post_view_id = models.AutoField(primary_key=True)
-    post = models.OneToOneField(Post, related_name='views', on_delete=models.CASCADE, default=0, null=False, unique=True)
     total_views = models.PositiveIntegerField(default=0, null=False)
 
     def __str__(self):
-        return self.post
+        return self.title
 
 class Comment(models.Model):
     comment_id = models.AutoField(primary_key=True)
