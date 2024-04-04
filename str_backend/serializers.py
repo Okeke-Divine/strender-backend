@@ -12,6 +12,16 @@ class PostSerializer(serializers.ModelSerializer):
         model = Post
         fields = '__all__'
 
+class PostPreviewSerializer1(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ['title','author','published_at']
+
+class PostPreviewSerializer2(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ['title','img_url','author','published_at']
+
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
