@@ -4,7 +4,7 @@ from .models import Category, Post, PostViews, Comment
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('category_id', 'name')
+    list_display = ('category_id', 'name','img_url')
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
