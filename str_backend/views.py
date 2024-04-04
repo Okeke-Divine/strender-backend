@@ -33,9 +33,10 @@ def get_post(request, slug):
     except Post.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
+@api_view(['PATCH'])
 def update_post_views(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    post.views_count += 1
+    post.total_views += 1
     post.save()
     return JsonResponse({'message': 'Post views updated successfully'})
 
@@ -49,17 +50,17 @@ class PostListCreate(generics.ListCreateAPIView):
 
 # fields = ['title','author','published_at','slug']
 class PostPreview1(generics.ListAPIView):
-    queryset = Post.objects.all().order_by('?')
+    queryset = Post.objects.all().order_by('?')[:3]
     serializer_class = PostPreviewSerializer1
 
 # fields = ['title','img_url','author','published_at','slug']
 class PostPreview2(generics.ListAPIView):
-    queryset = Post.objects.all().order_by('?')
+    queryset = Post.objects.all().order_by('?')[:10]
     serializer_class = PostPreviewSerializer2
 
 # fields = ['title','img_url','author','summary','slug']
 class PostPreview3(generics.ListAPIView):
-    queryset = Post.objects.all().order_by('?')
+    queryset = Post.objects.all().order_by('?')[:12]
     serializer_class = PostPreviewSerializer3
 
 class CommentListCreate(generics.ListCreateAPIView):

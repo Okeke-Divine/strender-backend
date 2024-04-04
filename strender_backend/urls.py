@@ -12,6 +12,6 @@ urlpatterns = [
     path('api/v1/comments/', CommentListCreate.as_view(), name='comment-list-create'),
     path('api/v1/add_email/', add_email, name='create_email'),
     path('api/v1/post/<slug>/', get_post, name='get_post'),
-     path('api/v1/post/<int:pk>/update-views/', update_post_views, name='update_post_views'),
+    path('api/v1/post/<int:pk>/update-views/', update_post_views, name='update_post_views'),
     
 ]
