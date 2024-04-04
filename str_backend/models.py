@@ -22,6 +22,10 @@ class Post(models.Model):
     published_at = models.DateTimeField(auto_now_add=True)
     total_views = models.PositiveIntegerField(default=0, null=False)
 
+    def increment_views(self):
+        self.total_views += 1
+        self.save()
+
     def __str__(self):
         return self.title
 

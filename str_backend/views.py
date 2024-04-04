@@ -6,6 +6,8 @@ from .models import Post, Comment, Category
 from .serializers import PostSerializer, PostPreviewSerializer1, PostPreviewSerializer2, PostPreviewSerializer3, CommentSerializer, CategorySerializer, EmailListSerializer
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
+from django.shortcuts import get_object_or_404
+from django.http import JsonResponse
 
 @api_view(['POST'])
 def add_email(request):
@@ -30,6 +32,12 @@ def get_post(request, slug):
         return Response(serializer.data)
     except Post.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
+
+def update_post_views(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.views_count += 1
+    post.save()
+    return JsonResponse({'message': 'Post views updated successfully'})
 
 class CategoryListAPIView(generics.ListAPIView):
     queryset = Category.objects.all().order_by('?')

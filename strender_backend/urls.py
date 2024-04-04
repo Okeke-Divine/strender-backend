@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from str_backend.views import CategoryListAPIView, PostListCreate, CommentListCreate, PostPreview1, PostPreview2, PostPreview3, add_email, get_post
+from str_backend.views import CategoryListAPIView, PostListCreate, CommentListCreate, PostPreview1, PostPreview2, PostPreview3, add_email, get_post, update_post_views
 
 urlpatterns = [
     path('encry/', admin.site.urls),
@@ -12,4 +12,6 @@ urlpatterns = [
     path('api/v1/comments/', CommentListCreate.as_view(), name='comment-list-create'),
     path('api/v1/add_email/', add_email, name='create_email'),
     path('api/v1/post/<slug>/', get_post, name='get_post'),
+     path('api/v1/post/<int:pk>/update-views/', update_post_views, name='update_post_views'),
+    
 ]
