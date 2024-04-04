@@ -25,8 +25,8 @@ class Post(models.Model):
 
 class PostViews(models.Model):
     post_view_id = models.AutoField(primary_key=True)
-    post = models.OneToOneField(Post, related_name='views', on_delete=models.CASCADE, default=0)
-    total_views = models.PositiveIntegerField(default=0)
+    post = models.OneToOneField(Post, related_name='views', on_delete=models.CASCADE, default=0, null=False, unique=True)
+    total_views = models.PositiveIntegerField(default=0, null=False)
 
     def __str__(self):
         return self.post
