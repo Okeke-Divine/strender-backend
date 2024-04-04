@@ -4,6 +4,7 @@ class Category(models.Model):
     category_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=250)
     img_url = models.CharField(max_length=250, null=True)
+    total_posts = models.IntegerField(default=0, null=False)
 
     def __str__(self):
         return self.name
