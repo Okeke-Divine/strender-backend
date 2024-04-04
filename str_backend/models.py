@@ -17,7 +17,7 @@ class Post(models.Model):
     author = models.CharField(max_length=50, null=True)
     summary = models.TextField(null=False, default='')
     content = models.TextField(null=False, default='')
-    slug = models.CharField(max_length=50, null=False)
+    slug = models.CharField(max_length=50, null=False, unique=True)
     tags = models.CharField(max_length=200, null=True)
     published_at = models.DateTimeField(auto_now_add=True)
     total_views = models.PositiveIntegerField(default=0, null=False)

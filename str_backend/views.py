@@ -22,6 +22,14 @@ def add_email(request):
     
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['GET'])
+def get_post(request, slug):
+    try:
+        post = Post.objects.get(slug=slug)
+        serializer = PostSerializer(post)
+        return Response(serializer.data)
+    except Post.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
 
 class CategoryListAPIView(generics.ListAPIView):
     queryset = Category.objects.all().order_by('?')
