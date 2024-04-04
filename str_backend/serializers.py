@@ -5,7 +5,7 @@ from .models import Post, Comment, Category, EmailList
 class EmailListSerializer(serializers.ModelSerializer):
     class Meta:
         model = EmailList
-        fields = '__all__'
+        fields = ['email']
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:

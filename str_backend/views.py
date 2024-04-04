@@ -4,14 +4,24 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import Post, Comment, Category
 from .serializers import PostSerializer, PostPreviewSerializer1, PostPreviewSerializer2, PostPreviewSerializer3, CommentSerializer, CategorySerializer, EmailListSerializer
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
 
 @api_view(['POST'])
-def create_email(request):
+def add_email(request):
     serializer = EmailListSerializer(data=request.data)
     if serializer.is_valid():
+        email = serializer.validated_data.get('email')
+        try:
+            validate_email(email)
+        except ValidationError:
+            return Response({'error': 'Invalid email address'}, status=status.HTTP_400_BAD_REQUEST)
+        
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class CategoryListAPIView(generics.ListAPIView):
     queryset = Category.objects.all().order_by('?')
