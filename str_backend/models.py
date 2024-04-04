@@ -36,7 +36,7 @@ class Comment(models.Model):
 
 class EmailList(models.Model):
     email_id = models.AutoField(primary_key=True)
-    emaill = models.EmailField(unique=True)
+    email = models.EmailField(unique=True)
 
     def __str__(self):
-        return self.emaill
+        return self.email
