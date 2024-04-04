@@ -33,3 +33,7 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.content
+
+class EmailList(models.Model):
+    email_id = models.AutoField(primary_key=True)
+    emaill = models.CharField(max_length=255, unique=True)
