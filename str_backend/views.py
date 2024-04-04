@@ -11,16 +11,17 @@ class PostListCreate(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
-# fields = ['title','author','published_at']
+# fields = ['title','author','published_at','slug']
 class PostPreview1(generics.ListAPIView):
     queryset = Post.objects.all()
     serializer_class = PostPreviewSerializer1
 
-# fields = ['title','img_url','author','published_at']
+# fields = ['title','img_url','author','published_at','slug']
 class PostPreview2(generics.ListAPIView):
     queryset = Post.objects.all()
     serializer_class = PostPreviewSerializer2
 
+# fields = ['title','img_url','author','summary','slug']
 class PostPreview3(generics.ListAPIView):
     queryset = Post.objects.all()
     serializer_class = PostPreviewSerializer3

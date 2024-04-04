@@ -15,12 +15,12 @@ class PostSerializer(serializers.ModelSerializer):
 class PostPreviewSerializer1(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ['title','author','published_at']
+        fields = ['title','author','published_at','slug']
 
 class PostPreviewSerializer2(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ['title','img_url','author','published_at']
+        fields = ['title','img_url','author','published_at','slug']
 
 class PostPreviewSerializer3(serializers.ModelSerializer):
     class Meta:
