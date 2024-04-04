@@ -4,6 +4,9 @@ class Category(models.Model):
     category_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=250) 
 
+    def __str__(self):
+        return self.name
+
 class Post(models.Model):
     post_id = models.AutoField(primary_key=True, default=0)
     category = models.ForeignKey(Category, related_name='posts', on_delete=models.PROTECT, default=0)
