@@ -22,6 +22,11 @@ class PostPreviewSerializer2(serializers.ModelSerializer):
         model = Post
         fields = ['title','img_url','author','published_at']
 
+class PostPreviewSerializer3(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ['title','img_url','author','summary','slug']
+
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment

@@ -1,7 +1,7 @@
 # views.py
 from rest_framework import generics
 from .models import Post, Comment, Category
-from .serializers import PostSerializer, PostPreviewSerializer1, PostPreviewSerializer2, CommentSerializer, CategorySerializer
+from .serializers import PostSerializer, PostPreviewSerializer1, PostPreviewSerializer2, PostPreviewSerializer3, CommentSerializer, CategorySerializer
 
 class CategoryListAPIView(generics.ListAPIView):
     queryset = Category.objects.all()
@@ -20,6 +20,10 @@ class PostPreview1(generics.ListAPIView):
 class PostPreview2(generics.ListAPIView):
     queryset = Post.objects.all()
     serializer_class = PostPreviewSerializer2
+
+class PostPreview3(generics.ListAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostPreviewSerializer3
 
 class CommentListCreate(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
