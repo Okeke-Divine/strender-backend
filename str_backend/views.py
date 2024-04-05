@@ -65,7 +65,7 @@ class PostPreview3(generics.ListAPIView):
     serializer_class = PostPreviewSerializer3
 
 class CommentListCreate(generics.ListCreateAPIView):
-    queryset = Comment.objects.all().order_by('?')
+    queryset = Comment.objects.all()
     serializer_class = CommentSerializer
 
 @api_view(['GET'])
@@ -74,3 +74,29 @@ def get_posts_by_category(request, category_name):
     posts = category.posts.all()
     serializer = PostPreviewSerializer3(posts, many=True)  
     return Response(serializer.data)
+
+@api_view(['POST'])
+def add_comment(request):
+    if request.method == 'POST':
+        post_id = request.data.get('post_id')
+        content = request.data.get('content')
+        
+        if not post_id or not content:
+            return Response({'error': 'Both post_id and content are required'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        post = get_object_or_404(Post, pk=post_id)
+        serializer = CommentSerializer(data={'post': post_id, 'content': content})
+        
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def list_comments(request, post_id):
+    if request.method == 'GET':
+        post = get_object_or_404(Post, pk=post_id)
+        comments = Comment.objects.filter(post=post)
+        serializer = CommentSerializer(comments, many=True)
+        return Response(serializer.data)
