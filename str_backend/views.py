@@ -66,3 +66,10 @@ class PostPreview3(generics.ListAPIView):
 class CommentListCreate(generics.ListCreateAPIView):
     queryset = Comment.objects.all().order_by('?')
     serializer_class = CommentSerializer
+
+@api_view(['GET'])
+def get_posts_by_category(request, category_name):
+    category = get_object_or_404(Category, name=category_name)
+    posts = category.posts.all()
+    serializer = PostPreviewSerializer3(posts, many=True)  
+    return Response(serializer.data)
