@@ -2,6 +2,7 @@
 from rest_framework import generics, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.db.models import Q
 from .models import Post, Comment, Category
 from .serializers import PostSerializer, PostPreviewSerializer1, PostPreviewSerializer2, PostPreviewSerializer3, CommentSerializer, CategorySerializer, EmailListSerializer
 from django.core.validators import validate_email
@@ -100,3 +101,16 @@ def list_comments(request, post_id):
         comments = Comment.objects.filter(post=post)
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
+    
+class PostSearchAPIView(generics.ListAPIView):
+    serializer_class = PostPreviewSerializer3
+
+    def get_queryset(self):
+        query = self.request.query_params.get('query', '').lower()  # Convert query to lowercase
+        if query:
+            return Post.objects.filter(
+                Q(title__icontains=query) | 
+                Q(author__icontains=query) | 
+                Q(tags__icontains=query)
+            )
+        return Post.objects.none()

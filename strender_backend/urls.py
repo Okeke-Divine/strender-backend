@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from str_backend.views import CategoryListAPIView, PostListCreate, CommentListCreate, PostPreview1, PostPreview2, PostPreview3, add_email, get_post, update_post_views, get_posts_by_category, add_comment, list_comments
+from str_backend.views import CategoryListAPIView, PostListCreate, CommentListCreate, PostPreview1, PostPreview2, PostPreview3, add_email, get_post, update_post_views, get_posts_by_category, add_comment, list_comments, PostSearchAPIView
 
 urlpatterns = [
     path('encry/', admin.site.urls),
@@ -16,5 +16,5 @@ urlpatterns = [
     path('api/v1/post/<int:pk>/update-views/', update_post_views, name='update_post_views'),
     path('api/v1/add_comment/', add_comment, name='add_comment'),
     path('api/v1/comment/<int:post_id>/', list_comments, name='list_comments'),
+    path('api/v1/posts/search/', PostSearchAPIView.as_view(), name='post-search'),
 ]
-
