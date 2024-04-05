@@ -53,14 +53,15 @@ class PostPreview1(generics.ListAPIView):
     queryset = Post.objects.all().order_by('?')[:3]
     serializer_class = PostPreviewSerializer1
 
+#most read
 # fields = ['title','img_url','author','published_at','slug']
 class PostPreview2(generics.ListAPIView):
-    queryset = Post.objects.all().order_by('?')[:10]
+    queryset = Post.objects.all().order_by('-total_views')[:10]
     serializer_class = PostPreviewSerializer2
 
 # fields = ['title','img_url','author','summary','slug']
 class PostPreview3(generics.ListAPIView):
-    queryset = Post.objects.all().order_by('?')[:12]
+    queryset = Post.objects.all().order_by('-post_id')[:12]
     serializer_class = PostPreviewSerializer3
 
 class CommentListCreate(generics.ListCreateAPIView):
