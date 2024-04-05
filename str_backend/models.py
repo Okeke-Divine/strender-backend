@@ -31,8 +31,8 @@ class Post(models.Model):
 
 class Comment(models.Model):
     comment_id = models.AutoField(primary_key=True)
-    post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE, default=0)
-    content = models.TextField(default='')
+    post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE, default=0, null=False)
+    content = models.TextField(default='', null=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
