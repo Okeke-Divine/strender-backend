@@ -18,6 +18,17 @@ class PostSerializer(serializers.ModelSerializer):
         model = Post
         fields = '__all__'
 
+class CategorySerializer2(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['name']
+
+class PostSerializer2(serializers.ModelSerializer):
+    category = CategorySerializer2()
+
+    class Meta:
+        model = Post
+        fields = '__all__'
 
 class PostPreviewSerializer1(serializers.ModelSerializer):
     class Meta:

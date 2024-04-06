@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.db.models import Q
 from .models import Post, Comment, Category
-from .serializers import PostSerializer, PostPreviewSerializer1, PostPreviewSerializer2, PostPreviewSerializer3, CommentSerializer, CategorySerializer, EmailListSerializer
+from .serializers import PostSerializer, PostPreviewSerializer1, PostPreviewSerializer2, PostPreviewSerializer3, CommentSerializer, CategorySerializer, EmailListSerializer, PostSerializer2
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 from django.shortcuts import get_object_or_404
@@ -29,7 +29,7 @@ def add_email(request):
 def get_post(request, slug):
     try:
         post = Post.objects.get(slug=slug)
-        serializer = PostSerializer(post)
+        serializer = PostSerializer2(post)
         return Response(serializer.data)
     except Post.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
