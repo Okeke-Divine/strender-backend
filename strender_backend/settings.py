@@ -28,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '.vercel.app',
     'now.sh',
+    '.onrender.com',
     'localhost',
     'strender.vercel.app',
     '127.0.0.1',
