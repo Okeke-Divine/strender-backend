@@ -31,6 +31,7 @@ ALLOWED_HOSTS = [
     '.onrender.com',
     'localhost',
     'strender.vercel.app',
+    'strender-backend-1.onrender.com',
     '127.0.0.1',
 ]
 
