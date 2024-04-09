@@ -1,4 +1,4 @@
-from decouple import config
+import environ
 
 from pathlib import Path
 
@@ -14,6 +14,8 @@ SECRET_KEY = 'django-insecure-i90*^dk-0)bp5lo+ph3qww8c_+6yd%$b#2fa+kc(v*l9owg(jh
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+environ.Env.read_env()
 
 ALLOWED_HOSTS = [
     '.vercel.app',
@@ -94,17 +96,18 @@ WSGI_APPLICATION = 'strender_backend.wsgi.application'
 # }
 
 
+env = environ.Env()
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DATABASE_NAME'),
-        'USER': config('DATABASE_USER'),
-        'PASSWORD': config('DATABASE_PASSWORD'),
-        'HOST': config('DATABASE_HOST'),
-        'PORT': config('DATABASE_PORT'),
+        'NAME': env('DATABASE_NAME'),
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASSWORD'),
+        'HOST': env('DATABASE_HOST'),
+        'PORT': env('DATABASE_PORT'),
     }
 }
-
 
 
 
