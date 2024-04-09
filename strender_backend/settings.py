@@ -53,6 +53,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://strender-backend-1.onrender.com',
+]
+
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'https://strender.vercel.app',
