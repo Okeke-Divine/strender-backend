@@ -56,8 +56,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'https://strender.vercel.app',
-    '.onrender.com',
-    '.vercel.app',
+    'https://strender-backend-1.onrender.com',
 ]
 
 ROOT_URLCONF = 'strender_backend.urls'
