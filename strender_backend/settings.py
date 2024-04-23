@@ -156,9 +156,9 @@ USE_TZ = True
 
 # This setting informs Django of the URI path from which your static files will be served to users
 # Here, they well be accessible at your-domain.onrender.com/static/... or yourcustomdomain.com/static/...
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS  = BASE_DIR / 'staticfiles'
 
 # This production code might break development mode, so we check whether we're in DEBUG mode
 if not DEBUG:
@@ -166,7 +166,7 @@ if not DEBUG:
     STATIC_ROOT = BASE_DIR / 'staticfiles'
     # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
     # and renames the files with unique names for each version to support long-term caching
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage' 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
