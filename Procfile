@@ -1,0 +1,1 @@
+web: gunicorn strender_backend.wsgi
